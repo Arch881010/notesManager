@@ -1,5 +1,7 @@
 # Notes
+
 An application to manage your notes!
+*This is meant as a 1 key 1 person system! Create your own API key wisely!*
 
 ## Table of Contents
 
@@ -12,6 +14,7 @@ An application to manage your notes!
 
 Clone this repository.
 Rename example.env to .env (and if you plan to contribute, readd example.env)
+
 ```cmd
 npm i
 node .

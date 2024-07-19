@@ -1,4 +1,4 @@
-var fs = require("fs");
+const fs = require("fs");
 function saveFile(name, tags, body) {
   data = `./files/${name}.txt`;
   info = `./info/${name}.json`;
