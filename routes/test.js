@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.get("/test", (req, res) => {
   res.send("This is a test route2");
-  var data = saveFile("test", ["test"], "This is a test file");
+  var data = saveFile("test", [ "test", "1" ], "This is a test file[gold]");
   if (!data.success) console.log(data.error);
 });
 

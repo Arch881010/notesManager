@@ -4,12 +4,14 @@ const cookieParser = require("cookie-parser");
 
 const getRouter = require("./modules/getRouter");
 const saveFile = require("./modules/saveFile");
+const pathResolver = require("./modules/pathResolver");
 
 require("dotenv").config();
 
 const testRouter = getRouter("test");
 const loginRouter = getRouter("login");
 const apiRouter = getRouter("api");
+const viewRouter = getRouter("view");
 
 const app = express();
 
@@ -29,14 +31,14 @@ app.use("/api", apiRouter);
 // Authkey checker
 app.get("*", (req, res, next) => {
   if (req.cookies.authkey !== process.env.authkey && req.method != "OPTIONS") {
-    res.redirect("/login");
+    return res.redirect("/login");
   }
   next();
 });
 
 app.post("*", (req, res, next) => {
   if (req.headers.authkey !== process.env.authkey && req.method != "OPTIONS") {
-    res.status(401).send("Unauthorized");
+    return res.status(401).send("Unauthorized");
   }
   next();
 });
@@ -48,6 +50,19 @@ app.get("/", (req, res) => {
 
 app.use("/test", testRouter);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.use('/view', viewRouter);
+
+app.use("/info", express.static("info"));
+
+app.get("*", (req, res) => {
+  var path = req.path;
+  var path = pathResolver(`../private${path}.html`);
+  if (fs.existsSync(path)) {
+    return res.sendFile(path);
+  } 
+  return res.status(404).send(`404 Not Found - Page does not exist.` );
+});
+
+app.listen(process.env.port, () => {
+  console.log(`Server is running on port ${process.env.port}`);
 });

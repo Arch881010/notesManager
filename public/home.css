@@ -1,0 +1,43 @@
+a {
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+
+footer {
+  
+  bottom: 0;
+  width: 100%;
+}
+
+.dark-ui {
+  color: white;
+  background-color: black;
+}
+
+.dark-ui nav,
+.dark-ui h1 {
+  border-bottom: 1px solid white;
+}
+
+.dark-ui footer {
+  border-top: 1px solid white;
+  fill: white;
+  opacity: 100%;
+}
+
+.light-ui {
+  color: black;
+  background-color: white;
+}
+
+.light-ui nav,
+.light-ui h1 {
+  border-bottom: 1px solid black;
+}
+
+.light-ui footer {
+  border-top: 1px solid black;
+  fill: black;
+}
