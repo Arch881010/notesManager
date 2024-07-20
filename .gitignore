@@ -2,7 +2,8 @@
 .env 
 
 # Info/Files (meant for server-side ONLY)
-
+info
+files
 
 # Node
 node_modules
